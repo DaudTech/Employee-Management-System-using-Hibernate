@@ -1,0 +1,8 @@
+<%@ include file="nav.jsp" %>
+<html>
+<body onload="makeActive('home')">
+<div class="dv">
+		<h1 class="lamsg">Welcome to Employee Management System</h1>
+		</div>
+</body>
+</html>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
