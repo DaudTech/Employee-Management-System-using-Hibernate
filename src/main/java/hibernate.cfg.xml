@@ -5,16 +5,18 @@
 
 <hibernate-configuration>
     <session-factory>
+        <!-- Hibernate settings -->
         <property name="hbm2ddl.auto">update</property>
         <property name="show_sql">true</property>
         <property name="dialect">org.hibernate.dialect.MySQL8Dialect</property>
 
-        <!-- Use environment variables from Render -->
-        <property name="connection.url">jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?createDatabaseIfNotExist=true&amp;useSSL=false&amp;allowPublicKeyRetrieval=true</property>
-        <property name="connection.username">${DB_USER}</property>
-        <property name="connection.password">${DB_PASSWORD}</property>
+        <!-- SkySQL / MariaDB connection -->
+        <property name="connection.url">jdbc:mysql://serverless-us-east4.sysp0000.db2.skysql.com:4042/employees?useSSL=true&amp;requireSSL=true&amp;allowPublicKeyRetrieval=true</property>
+        <property name="connection.username">dbpgf00728213</property>
+        <property name="connection.password">YOUR_DEFAULT_PASSWORD</property>
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
 
+        <!-- Your mappings -->
         <mapping resource="hibernate.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
