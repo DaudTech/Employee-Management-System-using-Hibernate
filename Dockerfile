@@ -1,10 +1,26 @@
-# Stage 1: Build
-FROM maven:3.8.5-openjdk-17 AS build
+# Stage 1: Build with Maven
+FROM maven:3.8.7-openjdk-8-slim AS build
+
 WORKDIR /app
-COPY . .
+
+# Copy pom.xml first and download dependencies (better caching)
+COPY pom.xml .
+RUN mvn dependency:go-offline -B
+
+# Now copy source code
+COPY src ./src
+
+# Build WAR without running tests
 RUN mvn clean package -DskipTests
 
-# Stage 2: Run (Tomcat if WAR, Java if JAR)
-FROM tomcat:9.0
-COPY --from=build /app/target/*.war /usr/local/tomcat/webapps/ROOT.war
+# Stage 2: Run with Tomcat
+FROM tomcat:9.0-jdk8-temurin
+
+# Remove default ROOT app
+RUN rm -rf /usr/local/tomcat/webapps/*
+
+# Copy generated WAR
+COPY --from=build /app/target/emloyee-management-jsp.war /usr/local/tomcat/webapps/ROOT.war
+
 EXPOSE 8080
+CMD ["catalina.sh", "run"]
