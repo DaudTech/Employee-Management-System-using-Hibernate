@@ -34,7 +34,7 @@
   </dependencies>
   <build>
     <finalName>emloyee-management-jsp</finalName>
-   plugins>
+   <plugins>
       <!-- Force Maven to use Java 8 -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
